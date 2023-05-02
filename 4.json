@@ -1,0 +1,50 @@
+[
+  {
+    "name": "周四课程1",
+    "index": 1,
+    "timeStart": "8:00:00",
+    "timeEnd": "8:45:00"
+  },
+  {
+    "name": "周四课程2",
+    "index": 2,
+    "timeStart": "8:55:00",
+    "timeEnd": "9:40:00"
+  },
+  {
+    "name": "周四课程3",
+    "index": 3,
+    "timeStart": "10:30:00",
+    "timeEnd": "11:15:00"
+  },
+  {
+    "name": "周四课程4",
+    "index": 4,
+    "timeStart": "11:25:00",
+    "timeEnd": "12:10:00"
+  },
+  {
+    "name": "周四课程5",
+    "index": 5,
+    "timeStart": "13:30:00",
+    "timeEnd": "14:15:00"
+  },
+  {
+    "name": "周四课程6",
+    "index": 6,
+    "timeStart": "14:25:00",
+    "timeEnd": "15:10:00"
+  },
+  {
+    "name": "周四课程7",
+    "index": 7,
+    "timeStart": "15:30:00",
+    "timeEnd": "16:15:00"
+  },
+  {
+    "name": "周四课程8",
+    "index": 8,
+    "timeStart": "16:30:00",
+    "timeEnd": "17:30:00"
+  }
+]

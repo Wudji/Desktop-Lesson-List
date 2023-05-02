@@ -1,0 +1,43 @@
+[
+  {
+    "messageInfo" : "终古闲情归落照",
+    "index": 0
+  },
+  {
+    "messageInfo" : "一春幽梦逐游丝",
+    "index": 1
+  },
+  {
+    "messageInfo" : "0123456789",
+    "index": 2
+  },
+  {
+    "messageInfo" : "Bold font style",
+    "textStyle": "bold",
+    "index": 3
+  },
+  {
+    "messageInfo" : "Italic font style",
+    "textStyle": "italic",
+    "index": 4
+  },
+  {
+    "messageInfo" : "Custom Color",
+    "colorR" : "43",
+    "colorG" : "162",
+    "colorB" : "69",
+    "index": 5
+  },
+  {
+    "messageInfo" : "周三值日表：",
+    "index": 6
+  },
+  {
+    "messageInfo" : "张三",
+    "index": 7
+  },
+  {
+    "messageInfo" : "🆗 <- emoji test",
+    "index": 8
+  }
+]
