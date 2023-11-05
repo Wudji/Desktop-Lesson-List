@@ -1,7 +1,7 @@
-package com.wudji.lessonlist.Utils;
+package com.wudji.lessonlist.utils;
 
 import com.wudji.lessonlist.MainActivity;
-import com.wudji.lessonlist.Screens.MainConfigScreen;
+import com.wudji.lessonlist.screens.MainConfigScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +16,8 @@ public class ClockButtonManager {
 
     static SimpleDateFormat formatter= new SimpleDateFormat("HH:mm:ss");
 
-    static Font font1 = FileControl.getFont(Font.BOLD, MainActivity.globalConfig.getClockFontsize() -1);
-    static Font font2 = FileControl.getFont(Font.BOLD, MainActivity.globalConfig.getClockFontsize() -1);
+    static Font font1 = FileControl.getFont(Font.BOLD, MainActivity.globalConfig.getClockFontsize() - 1);
+    static Font font2 = FileControl.getFont(Font.BOLD, MainActivity.globalConfig.getClockFontsize() - 1);
 
     public static JButton getTimeButton(){
         JButton j = new JButton(" 时间:" + formatter.format(new Date(System.currentTimeMillis())) +" ");
@@ -39,8 +39,9 @@ public class ClockButtonManager {
 
     public static JButton getCountdownButton(){
         Date d = Calendar.getInstance().getTime();
-        LocalDateTime dateStart = LocalDateTime.of(MainActivity.globalConfig.getCountDownYear(), MainActivity.globalConfig.getCountDownMonth() - 1 , MainActivity.globalConfig.getCountDownDate(),8,1);
-        LocalDateTime dateEnd = LocalDateTime.of(d.getYear() + 1900, d.getMonth(), d.getDate(), 0, 1);
+        // fix #1: 当日期形如10月31日时，dateEnd计算出错。
+        LocalDateTime dateStart = LocalDateTime.of(MainActivity.globalConfig.getCountDownYear(), MainActivity.globalConfig.getCountDownMonth() , MainActivity.globalConfig.getCountDownDate(),8,1);
+        LocalDateTime dateEnd = LocalDateTime.of(d.getYear() + 1900, d.getMonth() + 1, d.getDate(), 0, 1);
 
         Duration duration = Duration.between(dateStart, dateEnd);
 

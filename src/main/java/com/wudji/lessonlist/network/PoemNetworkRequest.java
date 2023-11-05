@@ -1,8 +1,8 @@
 package com.wudji.lessonlist.network;
 
 import com.alibaba.fastjson2.JSONObject;
-import com.wudji.lessonlist.Utils.ExceptionManager;
-import com.wudji.lessonlist.Utils.FileControl;
+import com.wudji.lessonlist.utils.ExceptionManager;
+import com.wudji.lessonlist.utils.FileControl;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,8 +12,12 @@ import java.net.URL;
 public class PoemNetworkRequest {
     public static String getPoemData() {
         String[] requestHeader = {"X-User-Token",getUserDataToken()};
-        System.out.println(sendGetRequestWithHeader("https://v2.jinrishici.com/info",requestHeader));
         return sendGetRequestWithHeader("https://v2.jinrishici.com/sentence",requestHeader);
+    }
+
+    public static String getDeviceInfo(){
+        String[] requestHeader = {"X-User-Token",getUserDataToken()};
+        return sendGetRequestWithHeader("https://v2.jinrishici.com/info",requestHeader);
     }
 
     private static String getUserDataToken() {
@@ -24,7 +28,7 @@ public class PoemNetworkRequest {
             token = tokenRespond.getString("data");
             FileControl.writeString("config/token.txt",token);
         }
-        System.out.println(token);
+        // System.out.println(token);
         return token;
     }
 

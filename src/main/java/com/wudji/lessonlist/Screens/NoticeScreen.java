@@ -1,8 +1,8 @@
-package com.wudji.lessonlist.Screens;
+package com.wudji.lessonlist.screens;
 
 import com.wudji.lessonlist.MainActivity;
 import com.wudji.lessonlist.obj.NoticeLine;
-import com.wudji.lessonlist.Utils.FileControl;
+import com.wudji.lessonlist.utils.FileControl;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -44,7 +44,12 @@ public class NoticeScreen extends JDialog {
 
     public void updatePosition(int y){
         this.pack();
-        this.setLocation(this.location.x - this.getWidth(), this.location.y + y + 30);
+        if(y == -1){ // 未启用诗词推送页面
+            this.setLocation(this.location.x - this.getWidth(), this.location.y);
+        }else{
+            this.setLocation(this.location.x - this.getWidth(), this.location.y + y + 30);
+        }
+
     }
     private void updateNoticeList(NoticeLine[] lines){
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));

@@ -1,29 +1,30 @@
-package com.wudji.lessonlist.Screens;
+package com.wudji.lessonlist.screens;
 
-import com.wudji.lessonlist.Utils.ExceptionManager;
-import com.wudji.lessonlist.Utils.FileControl;
+import com.wudji.lessonlist.utils.ExceptionManager;
+import com.wudji.lessonlist.utils.FileControl;
 import com.wudji.lessonlist.obj.Lesson;
 import com.wudji.lessonlist.obj.LessonConfig;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class LessonConfigScreen extends JFrame {
+public class LessonConfigScreen extends JDialog {
     private Lesson[] lessons;
 
-    private LessonConfig[] configs = new LessonConfig[10];
+    private LessonConfig[] configs = new LessonConfig[15];
 
     private int dateOfWeek;
     private static String[] weeks = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
 
     public LessonConfigScreen(Lesson[] lessons,String date) {
+        super((Frame) null, "课程配置界面", true);
         this.lessons = lessons;
         this.dateOfWeek = getDateNumFromString(date);
         initialize();
     }
 
     private void initialize() {
-        setTitle("配置课程列表页面");
+        // setTitle("配置课程列表页面");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setResizable(false);
 
@@ -88,7 +89,7 @@ public class LessonConfigScreen extends JFrame {
         panel.add(headLabel5, constraints);
 
         // 添加课表配置项
-        for (int j = 0;j < 10;j++){
+        for (int j = 0;j < 15;j++){
             if(j < lessons.length) {
                 configs[j] = new LessonConfig(lessons[j], true);
             }else {
@@ -114,7 +115,7 @@ public class LessonConfigScreen extends JFrame {
         saveButton.setFont(titleFont);
         saveButton.addActionListener(e -> saveConfig(false));
         constraints.gridx = 0;
-        constraints.gridy = 14;
+        constraints.gridy = 19;
         constraints.gridwidth = 3;
         panel.add(saveButton, constraints);
 
@@ -123,7 +124,7 @@ public class LessonConfigScreen extends JFrame {
         saveARButton.addActionListener(e -> saveConfig(true));
 
         constraints.gridx = 2;
-        constraints.gridy = 14;
+        constraints.gridy = 19;
         constraints.gridwidth = 3;
         panel.add(saveARButton, constraints);
 

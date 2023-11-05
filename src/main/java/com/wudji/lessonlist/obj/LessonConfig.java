@@ -1,6 +1,6 @@
 package com.wudji.lessonlist.obj;
 
-import com.wudji.lessonlist.Utils.FileControl;
+import com.wudji.lessonlist.utils.FileControl;
 
 import javax.swing.*;
 import java.awt.*;

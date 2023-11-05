@@ -1,18 +1,22 @@
-package com.wudji.lessonlist.Screens;
+package com.wudji.lessonlist.screens;
 
-import com.wudji.lessonlist.Utils.FileControl;
+import com.wudji.lessonlist.utils.FileControl;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import java.awt.*;
 
-public class MainConfigScreen extends JFrame {
+public class MainConfigScreen extends JDialog {
     Font fontS = FileControl.getFont(Font.BOLD,20);
     Font fontL = FileControl.getFont(Font.BOLD,26);
 
     String targetDay = "Monday";
     public MainConfigScreen(){
-        setTitle("主配置页面");
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        super((Frame) null, "主配置界面", true);
+        setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
         setResizable(false);
 
         JPanel panel = new JPanel();

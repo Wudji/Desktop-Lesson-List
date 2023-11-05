@@ -1,10 +1,10 @@
-package com.wudji.lessonlist.Screens;
+package com.wudji.lessonlist.screens;
 
 
-import com.wudji.lessonlist.Utils.ClockButtonManager;
-import com.wudji.lessonlist.Utils.ExceptionManager;
+import com.wudji.lessonlist.utils.ClockButtonManager;
+import com.wudji.lessonlist.utils.ExceptionManager;
 import com.wudji.lessonlist.MainActivity;
-import com.wudji.lessonlist.Utils.FileControl;
+import com.wudji.lessonlist.utils.FileControl;
 import com.wudji.lessonlist.obj.Lesson;
 
 import javax.swing.*;

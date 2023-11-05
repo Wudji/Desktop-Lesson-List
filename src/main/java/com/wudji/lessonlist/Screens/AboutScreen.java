@@ -1,7 +1,7 @@
-package com.wudji.lessonlist.Screens;
+package com.wudji.lessonlist.screens;
 
 import com.wudji.lessonlist.MainActivity;
-import com.wudji.lessonlist.Utils.FileControl;
+import com.wudji.lessonlist.utils.FileControl;
 
 import javax.swing.*;
 import java.awt.*;

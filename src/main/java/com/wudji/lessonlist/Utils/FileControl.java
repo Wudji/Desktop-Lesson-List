@@ -1,16 +1,16 @@
-package com.wudji.lessonlist.Utils;
+package com.wudji.lessonlist.utils;
 
-import com.wudji.lessonlist.obj.NoticeLine;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONWriter;
 import com.wudji.lessonlist.obj.Lesson;
+import com.wudji.lessonlist.obj.NoticeLine;
+import com.wudji.lessonlist.obj.WindowConfig;
 
 import java.awt.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
-import com.alibaba.fastjson2.*;
-import com.wudji.lessonlist.obj.WindowConfig;
 
 public class FileControl {
     public static String getFormattedStr(File jsonFile){
@@ -57,12 +57,8 @@ public class FileControl {
     public static Lesson[] getLessonListFromJSON(int week){
         String lessonListStr = getFormattedStr(new File("lessons/" + week + ".json"));
         Lesson[] lessons = JSON.parseArray(lessonListStr,Lesson.class).toArray(new Lesson[0]);
-        for (Lesson lesson:
-                lessons) {
-            ExceptionManager.areAllPropertiesNotNull(lesson);
-        }
-        if (lessons.length >= 10){
-            ExceptionManager.showErrorDialog(new IllegalStateException("Lesson number >= 10 is not supported by default!"));
+        if (lessons.length > 15){
+            ExceptionManager.showErrorDialog(new IllegalStateException("Lesson number > 15 is not supported by default!"));
         }
         return lessons;
     }
@@ -86,10 +82,6 @@ public class FileControl {
         try {
             String noticeLinesStr = getFormattedStr(new File("notice/" + week + ".json"));
             NoticeLine[] lines = JSON.parseArray(noticeLinesStr, NoticeLine.class).toArray(new NoticeLine[0]);
-            for (NoticeLine line:
-                 lines) {
-                ExceptionManager.areAllPropertiesNotNull(line);
-            }
             return lines;
         }catch (Exception e){
             ExceptionManager.showErrorDialog(e);

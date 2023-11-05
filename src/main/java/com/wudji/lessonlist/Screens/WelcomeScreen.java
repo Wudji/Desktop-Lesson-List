@@ -1,4 +1,4 @@
-package com.wudji.lessonlist.Screens;
+package com.wudji.lessonlist.screens;
 
 import javax.swing.*;
 import java.awt.*;

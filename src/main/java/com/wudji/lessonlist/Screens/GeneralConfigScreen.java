@@ -1,13 +1,13 @@
-package com.wudji.lessonlist.Screens;
+package com.wudji.lessonlist.screens;
 
 import com.wudji.lessonlist.MainActivity;
-import com.wudji.lessonlist.Utils.FileControl;
+import com.wudji.lessonlist.utils.FileControl;
 import com.wudji.lessonlist.obj.WindowConfig;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class GeneralConfigScreen extends JFrame {
+public class GeneralConfigScreen extends JDialog {
     private WindowConfig config = MainActivity.globalConfig;
     private JTextField clockFontSizeField;
     private JTextField lessonFontSizeField;
@@ -30,11 +30,12 @@ public class GeneralConfigScreen extends JFrame {
     private JTextField noticeHeightField;
 
     public GeneralConfigScreen() {
+        super((Frame) null, "通用配置界面", true);
         initialize();
     }
 
     private void initialize() {
-        setTitle("通用配置页面");
+        // setTitle("通用配置页面");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setResizable(false);
 
@@ -322,6 +323,20 @@ public class GeneralConfigScreen extends JFrame {
         FileControl.writeWindowConfigToJson(config);
 
         dispose(); // Close the config window
+
+        if(!MainActivity.globalConfig.isEnablePoemSuggestion()){
+            MainActivity.poemScreen.setVisible(false);
+            MainActivity.noticeScreen.updatePosition(-1);
+        }else{
+            MainActivity.poemScreen.setVisible(true);
+            MainActivity.noticeScreen.updatePosition(MainActivity.poemScreen.getHeight());
+        }
+
+        if(!MainActivity.globalConfig.isEnableNotice()){
+            MainActivity.noticeScreen.setVisible(false);
+        }else{
+            MainActivity.noticeScreen.setVisible(true);
+        }
 
         if(isRestart){
             System.exit(0);
