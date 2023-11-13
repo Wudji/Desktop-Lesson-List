@@ -20786,7 +20786,7 @@
 	"presentLessonColorB":99,
 	"presentLessonColorG":170,
 	"presentLessonColorR":234,
-	"temp_feature_notice":true,
+	"temp_feature_notice":false,
 	"weight":300,
 	"windowBgColor":{
 		"RGB":32700413,

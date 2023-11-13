@@ -36,11 +36,11 @@ public class ClockButtonManager {
         return j;
 
     }
-
+    // fix #1: 当日期形如10月31日时，dateEnd计算出错。
     public static JButton getCountdownButton(){
         Date d = Calendar.getInstance().getTime();
-        // fix #1: 当日期形如10月31日时，dateEnd计算出错。
-        LocalDateTime dateStart = LocalDateTime.of(MainActivity.globalConfig.getCountDownYear(), MainActivity.globalConfig.getCountDownMonth() , MainActivity.globalConfig.getCountDownDate(),8,1);
+
+        LocalDateTime dateStart = LocalDateTime.of(MainActivity.globalConfig.getCountDownYear(), MainActivity.globalConfig.getCountDownMonth(), MainActivity.globalConfig.getCountDownDate(),8,1);
         LocalDateTime dateEnd = LocalDateTime.of(d.getYear() + 1900, d.getMonth() + 1, d.getDate(), 0, 1);
 
         Duration duration = Duration.between(dateStart, dateEnd);
