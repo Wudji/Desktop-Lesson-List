@@ -1,6 +1,7 @@
 package com.wudji.lessonlist.screens;
 
-import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import java.awt.*;
 
 public class WPanel extends JPanel {

@@ -9,13 +9,12 @@ import java.io.StringWriter;
 import java.util.Calendar;
 
 public class ExceptionInfoScreen extends JDialog {
-    private JTextArea textArea;
 
     public ExceptionInfoScreen(Exception exception) {
         super((Frame) null, true);
         setTitle("Unexpected Exception: " + exception.getMessage());
 
-        textArea = new JTextArea();
+        JTextArea textArea = new JTextArea();
         textArea.setEditable(false);
         textArea.setLineWrap(true);
         JScrollPane scrollPane = new JScrollPane(textArea);
@@ -38,13 +37,9 @@ public class ExceptionInfoScreen extends JDialog {
         JButton aContinue = new JButton("Continue");
         JButton quitProgram = new JButton("Quit Program");
 
-        aContinue.addActionListener(e -> {
-            dispose();
-        });
+        aContinue.addActionListener(e -> dispose());
 
-        quitProgram.addActionListener(e -> {
-            System.exit(0);
-        });
+        quitProgram.addActionListener(e -> System.exit(0));
 
 
         // 布局

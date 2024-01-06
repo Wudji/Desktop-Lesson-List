@@ -347,11 +347,7 @@ public class GeneralConfigScreen extends JDialog {
             MainActivity.noticeScreen.updatePosition(MainActivity.poemScreen.getHeight());
         }
 
-        if(!MainActivity.globalConfig.isEnableNotice()){
-            MainActivity.noticeScreen.setVisible(false);
-        }else{
-            MainActivity.noticeScreen.setVisible(true);
-        }
+        MainActivity.noticeScreen.setVisible(MainActivity.globalConfig.isEnableNotice());
 
         if(isRestart){
             System.exit(0);

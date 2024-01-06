@@ -6,8 +6,12 @@ import com.alibaba.fastjson2.JSONWriter;
 import com.wudji.lessonlist.MainActivity;
 import com.wudji.lessonlist.utils.FileControl;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import java.awt.Font;
+import java.awt.Frame;
 
 public class PoemRawScreen extends JDialog {
     private JTextArea textArea;

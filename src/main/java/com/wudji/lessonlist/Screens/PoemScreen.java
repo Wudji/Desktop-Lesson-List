@@ -7,7 +7,11 @@ import com.wudji.lessonlist.utils.FileControl;
 import com.wudji.lessonlist.network.PoemNetworkRequest;
 import com.wudji.lessonlist.obj.NoticeLine;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;

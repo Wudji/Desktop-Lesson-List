@@ -6,8 +6,15 @@ import com.wudji.lessonlist.obj.Lesson;
 import com.wudji.lessonlist.obj.NoticeLine;
 import com.wudji.lessonlist.obj.WindowConfig;
 
-import java.awt.*;
-import java.io.*;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -24,7 +31,7 @@ public class FileControl {
 
             // 输出读取到的字符串
             return contentBuilder.toString();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
         return "";
@@ -86,8 +93,7 @@ public class FileControl {
     public static NoticeLine[] getNoticeLinesFromJSON(int week){
         try {
             String noticeLinesStr = getFormattedStr(new File("notice/" + week + ".json"));
-            NoticeLine[] lines = JSON.parseArray(noticeLinesStr, NoticeLine.class).toArray(new NoticeLine[0]);
-            return lines;
+            return JSON.parseArray(noticeLinesStr, NoticeLine.class).toArray(new NoticeLine[0]);
         }catch (Exception e){
             ExceptionManager.showErrorDialog(e);
         }

@@ -3,8 +3,14 @@ package com.wudji.lessonlist.screens;
 import com.wudji.lessonlist.MainActivity;
 import com.wudji.lessonlist.utils.FileControl;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URI;

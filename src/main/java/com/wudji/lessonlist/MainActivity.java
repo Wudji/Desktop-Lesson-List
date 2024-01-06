@@ -1,12 +1,16 @@
 package com.wudji.lessonlist;
 
-import com.wudji.lessonlist.screens.*;
+import com.wudji.lessonlist.obj.WindowConfig;
+import com.wudji.lessonlist.screens.LicenseInfoScreen;
+import com.wudji.lessonlist.screens.MainWindow;
+import com.wudji.lessonlist.screens.NoticeScreen;
+import com.wudji.lessonlist.screens.PoemScreen;
+import com.wudji.lessonlist.screens.WelcomeScreen;
 import com.wudji.lessonlist.utils.ExceptionManager;
 import com.wudji.lessonlist.utils.FileControl;
-import com.wudji.lessonlist.obj.WindowConfig;
 
-import java.awt.*;
-import java.text.ParseException;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -16,7 +20,7 @@ public class MainActivity {
     public static WindowConfig globalConfig = FileControl.getWindowConfig();
     public static Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     public static String base_version = "v1.1.2";
-    public static String product_version = "v1.2.3-poem-suggestion-tjyz";
+    public static String product_version = "v1.2.4-poem-suggestion-tjyz";
     public static PoemScreen poemScreen;
     public static MainWindow window;
     public static WelcomeScreen welcomeScreen;
@@ -43,7 +47,6 @@ public class MainActivity {
 
                 poemScreen = new PoemScreen(window.getLocation());
                 noticeScreen.updatePosition(poemScreen.getHeight());
-                poemScreen.setVisible(true);
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -71,6 +74,7 @@ public class MainActivity {
 
                 // 隐藏欢迎页面
                 welcomeScreen.setVisible(false);
+                poemScreen.setVisible(true);
                 if(MainActivity.globalConfig.isEnableNotice()){
                 // 显示公告框
                     noticeScreen.setVisible(true);
@@ -84,14 +88,10 @@ public class MainActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                try {
-                    updateA();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                updateA();
             }
 
-            private void updateA() throws ParseException {
+            private void updateA() {
                 window.update();
             }
         },1,1000);

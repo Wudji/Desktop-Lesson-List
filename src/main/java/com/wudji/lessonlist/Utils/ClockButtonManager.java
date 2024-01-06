@@ -3,8 +3,8 @@ package com.wudji.lessonlist.utils;
 import com.wudji.lessonlist.MainActivity;
 import com.wudji.lessonlist.screens.MainConfigScreen;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JButton;
+import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;

@@ -8,7 +8,7 @@ import java.awt.*;
 import java.io.File;
 
 public class LicenseInfoScreen extends JDialog {
-    private JTextArea textArea;
+    private final JTextArea textArea;
     public LicenseInfoScreen() {
         super((Frame) null, true);
         setTitle("协议页面");
@@ -30,9 +30,7 @@ public class LicenseInfoScreen extends JDialog {
             dispose();
         });
 
-        disagreeButton.addActionListener(e -> {
-            System.exit(0);
-        });
+        disagreeButton.addActionListener(e -> System.exit(0));
 
 
         // 布局
@@ -60,10 +58,9 @@ public class LicenseInfoScreen extends JDialog {
         return f.exists();
     }
     private void readLicense() {
-        try {
-            textArea.setText(FileControl.getFormattedStr(new File("resources/license.txt")));
-        } catch (Exception e) {
-            textArea.setText("Failed to get License File: resources/license.txt");
-        }
+        textArea.setText(FileControl.getFormattedStr(new File("resources/license.txt")));
+        // it works anyway
+        if(textArea.getText().length() < 10) textArea.setText("获取程序许可文件失败: resources/license.txt。" +
+                "\n请打开最新版本电子课表程序安装包resources/license.txt文件查看许可.");
     }
 }

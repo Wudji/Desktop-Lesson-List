@@ -1,6 +1,9 @@
 package com.wudji.lessonlist.screens;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JRootPane;
 import java.awt.*;
 
 public class WelcomeScreen extends JDialog {
