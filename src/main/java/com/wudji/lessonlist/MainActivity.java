@@ -1,9 +1,6 @@
 package com.wudji.lessonlist;
 
-import com.wudji.lessonlist.screens.MainWindow;
-import com.wudji.lessonlist.screens.NoticeScreen;
-import com.wudji.lessonlist.screens.PoemScreen;
-import com.wudji.lessonlist.screens.WelcomeScreen;
+import com.wudji.lessonlist.screens.*;
 import com.wudji.lessonlist.utils.ExceptionManager;
 import com.wudji.lessonlist.utils.FileControl;
 import com.wudji.lessonlist.obj.WindowConfig;
@@ -24,9 +21,15 @@ public class MainActivity {
     public static MainWindow window;
     public static WelcomeScreen welcomeScreen;
     public static NoticeScreen noticeScreen;
+    public static boolean isAgreedTOS = LicenseInfoScreen.verifyLicense();
 
     public static void main(String[] args){
         Thread.setDefaultUncaughtExceptionHandler(new CustomExceptionHandler());
+
+        while(!isAgreedTOS){
+            LicenseInfoScreen ls = new LicenseInfoScreen();
+            ls.displayLicense();
+        }
 
         window = new MainWindow((int)d.getWidth() - globalConfig.getPosx(),globalConfig.getPosy(),globalConfig.getWeight(),(int)d.getHeight() - globalConfig.getHeight());
         welcomeScreen = new WelcomeScreen();

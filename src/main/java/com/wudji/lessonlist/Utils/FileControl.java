@@ -25,7 +25,7 @@ public class FileControl {
             // 输出读取到的字符串
             return contentBuilder.toString();
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
         return "";
     }
@@ -47,6 +47,11 @@ public class FileControl {
     }
 
     public static void writeString(String filePath,String content){
+        try{
+            (new File(filePath)).createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(content);
         } catch (IOException e) {

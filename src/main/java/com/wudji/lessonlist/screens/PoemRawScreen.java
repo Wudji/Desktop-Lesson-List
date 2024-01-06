@@ -32,6 +32,7 @@ public class PoemRawScreen extends JDialog {
             JSONObject jsonObject = JSON.parseObject(json);
             String prettyJson = JSON.toJSONString(jsonObject, JSONWriter.Feature.PrettyFormat);
             textArea.setText(prettyJson);
+            System.out.println(prettyJson);
         } catch (Exception e) {
             textArea.setText("Invalid JSON format:\n" + json);
         }

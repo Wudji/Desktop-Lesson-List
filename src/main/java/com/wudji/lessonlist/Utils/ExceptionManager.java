@@ -1,17 +1,11 @@
 package com.wudji.lessonlist.utils;
 
-import com.wudji.lessonlist.MainActivity;
-
-import javax.swing.*;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import com.wudji.lessonlist.screens.ExceptionInfoScreen;
 
 public class ExceptionManager {
     public static void showErrorDialog(Throwable throwable) {
-        if(MainActivity.globalConfig.isTemp_feature_notice()) {
-            throwable.printStackTrace();
-        }else{
-            StringWriter sw = new StringWriter();
+        ExceptionInfoScreen es = new ExceptionInfoScreen((Exception) throwable);
+            /*StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
             throwable.printStackTrace(pw);
             String stackTrace = sw.toString();
@@ -23,7 +17,7 @@ public class ExceptionManager {
 
             // System.out.println(stackTrace);
 
-            JOptionPane.showMessageDialog(null, dialogMessage, "Error", JOptionPane.ERROR_MESSAGE);
-        }
+            JOptionPane.showMessageDialog(null, dialogMessage, "Error", JOptionPane.ERROR_MESSAGE);*/
+
     }
 }

@@ -1,6 +1,6 @@
 package com.wudji.lessonlist.obj;
 
-import java.awt.Color;
+import java.awt.*;
 
 @SuppressWarnings("unused")
 public class WindowConfig {
@@ -34,6 +34,8 @@ public class WindowConfig {
     private int noticeWeight;
     private int noticeHeight;
     private boolean enablePoemSuggestion;
+
+    private boolean enableSepLine = true;
 
     public int getClockFontsize() {
         return clockFontsize;
@@ -209,6 +211,10 @@ public class WindowConfig {
 
     public Color getWindowBgColor() {
         return new Color(this.windowColorR, this.windowColorG, this.windowColorB, this.windowColorA);
+
+    }
+    public Color getNoAlphaWindowBgColor(){
+        return new Color(this.windowColorR, this.windowColorG, this.windowColorB, 255);
     }
 
     public int getCountDownYear() {
@@ -289,5 +295,13 @@ public class WindowConfig {
 
     public void setEnablePoemSuggestion(boolean enablePoemSuggestion) {
         this.enablePoemSuggestion = enablePoemSuggestion;
+    }
+
+    public boolean isEnableSepLine() {
+        return enableSepLine;
+    }
+
+    public void setEnableSepLine(boolean enableSepLine) {
+        this.enableSepLine = enableSepLine;
     }
 }

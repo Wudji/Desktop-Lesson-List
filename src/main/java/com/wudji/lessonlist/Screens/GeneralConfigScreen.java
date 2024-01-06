@@ -18,6 +18,8 @@ public class GeneralConfigScreen extends JDialog {
     private JTextField heightField;
     private JCheckBox enableCountdownCheckbox;
 
+    private JCheckBox enableSepLineCheckbox;
+
     private JCheckBox enablePoemCheckbox;
     private JTextField countDownYearField;
     private JTextField countDownMonthField;
@@ -203,6 +205,17 @@ public class GeneralConfigScreen extends JDialog {
         constraints.gridy = 6;
         panel.add(enablePoemCheckbox, constraints);
 
+        JLabel enableSepLineLabel = new JLabel("启用课程分界线:");
+        enableSepLineLabel.setFont(infoFont);
+        enableSepLineCheckbox = new JCheckBox();
+        enableSepLineCheckbox.setSelected(config.isEnableSepLine());
+        constraints.gridx = 2;
+        constraints.gridy = 7;
+        panel.add(enableSepLineLabel, constraints);
+        constraints.gridx = 3;
+        constraints.gridy = 7;
+        panel.add(enableSepLineCheckbox, constraints);
+
         JLabel enableCountdownLabel = new JLabel("启用倒计时:");
         enableCountdownLabel.setFont(infoFont);
         enableCountdownCheckbox = new JCheckBox();
@@ -319,11 +332,13 @@ public class GeneralConfigScreen extends JDialog {
         config.setCountDownDate(Integer.parseInt(countDownDateField.getText()));
         config.setCountDownInfo(countDownTextField.getText());
         config.setTemp_feature_notice(suppressWarningsCheckbox.isSelected());
+        config.setEnableSepLine(enableSepLineCheckbox.isSelected());
 
         FileControl.writeWindowConfigToJson(config);
 
         dispose(); // Close the config window
 
+        // Update the position of NoticeScreen and PoemScreen
         if(!MainActivity.globalConfig.isEnablePoemSuggestion()){
             MainActivity.poemScreen.setVisible(false);
             MainActivity.noticeScreen.updatePosition(-1);

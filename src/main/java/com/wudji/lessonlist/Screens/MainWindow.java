@@ -24,7 +24,6 @@ public class MainWindow extends JDialog {
     WPanel lessonPanel = new WPanel(lessonList.length * 2,28);
 
     WPanel countDownPanel = new WPanel(2,28);
-    JButton separateLine = new JButton("============");
 
     Font lessonFont = FileControl.getFont(Font.BOLD, MainActivity.globalConfig.getLessonFontSize());
     public MainWindow(int x,int y,int w,int h) throws HeadlessException {
@@ -33,16 +32,14 @@ public class MainWindow extends JDialog {
         this.setVisible(true);
         this.setName("电子课表主界面");
         this.setTitle("电子课表主界面");
-        this.setBackground(new Color(0,0,0,0));
+        this.setBackground(new Color(0,0,0,0.0f));
+        this.lessonPanel.setBackground(new Color(0,0,0,0.0f));
 
         this.setDefaultCloseOperation(this.HIDE_ON_CLOSE);
         this.setBounds(x,y,w,h);
 
         // this.setBounds(150,150,150,150);
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
-
-        this.separateLine.setFont(lessonFont);
-        this.separateLine.setBackground(MainActivity.globalConfig.getWindowBgColor());
 
         this.add(clockPanel);
         if (MainActivity.globalConfig.isEnableCountDown()) {
@@ -60,7 +57,6 @@ public class MainWindow extends JDialog {
         this.validate();
         this.repaint();
 
-        // System.out.println("step 5 passed");
     }
 
     private void updateLessonStatus(){
@@ -74,18 +70,31 @@ public class MainWindow extends JDialog {
                 JButton lessonButt = new JButton(lesson.getIndex() + "." + lesson.getName());
 
                 lessonButt.setFont(lessonFont);
-                lessonButt.setBackground(MainActivity.globalConfig.getWindowBgColor());
+
 
                 if (lesson.getMillisTimeEnd() < sysMillis) {
-                    lessonButt.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 17, 0, 0, MainActivity.globalConfig.getPastLessonColor()/*new Color(148, 248, 125)*/), BorderFactory.createEmptyBorder(5, 17, 5, 17)));
+                    /*new Color(148, 248, 125)*/
+                    lessonButt.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(1, 13, 1, 0,
+                            MainActivity.globalConfig.getPastLessonColor()),
+                            BorderFactory.createEmptyBorder(5, 13, 5, 17)));
                 } else if (lesson.getMillisTimeStart() > sysMillis) {
-                    lessonButt.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 17, 0, 0, MainActivity.globalConfig.getNextLessonColor()/*new Color(255, 88, 79)*/), BorderFactory.createEmptyBorder(5, 17, 5, 17)));
+                    /*new Color(255, 88, 79)*/
+                    lessonButt.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(1, 13, 1, 0,
+                            MainActivity.globalConfig.getNextLessonColor()),
+                            BorderFactory.createEmptyBorder(5, 13, 5, 17)));
                 } else if (lesson.getMillisTimeStart() < sysMillis && lesson.getMillisTimeEnd() > sysMillis) {
-                    lessonButt.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 17, 0, 0, MainActivity.globalConfig.getPresentLessonColor()/*new Color(234, 170, 99)*/), BorderFactory.createEmptyBorder(5, 17, 5, 17)));
+                    /*new Color(234, 170, 99)*/
+                    lessonButt.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(1, 13, 1, 0,
+                            MainActivity.globalConfig.getPresentLessonColor()),
+                            BorderFactory.createEmptyBorder(5, 13, 5, 17)));
                 }
 
+                lessonButt.setBackground(MainActivity.globalConfig.getNoAlphaWindowBgColor());
+
                 lessonPanel.add(lessonButt);
-                lessonPanel.add(this.getSeparateLine());
+                if(MainActivity.globalConfig.isEnableSepLine()) {
+                    lessonPanel.add(this.getSeparateLine());
+                }
             }
         }catch(ParseException e){
             ExceptionManager.showErrorDialog(e);
@@ -109,6 +118,9 @@ public class MainWindow extends JDialog {
         JButton j = new JButton("============");
         j.setFont(lessonFont);
         j.setBackground(MainActivity.globalConfig.getWindowBgColor());
+        j.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(1, 13, 1, 0,
+                new Color(242, 247, 253)),
+                BorderFactory.createEmptyBorder(5, 13, 5, 17)));
         return j;
     }
 }
