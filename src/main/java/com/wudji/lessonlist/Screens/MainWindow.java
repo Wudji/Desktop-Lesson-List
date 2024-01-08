@@ -117,7 +117,7 @@ public class MainWindow extends JDialog {
     private JButton getSeparateLine(){
         JButton j = new JButton("============");
         j.setFont(lessonFont);
-        j.setBackground(MainActivity.globalConfig.getWindowBgColor());
+        j.setBackground(MainActivity.globalConfig.getNoAlphaWindowBgColor());
         j.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(1, 13, 1, 0,
                 new Color(242, 247, 253)),
                 BorderFactory.createEmptyBorder(5, 13, 5, 17)));
