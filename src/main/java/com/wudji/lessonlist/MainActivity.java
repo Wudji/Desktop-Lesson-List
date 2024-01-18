@@ -19,7 +19,7 @@ public class MainActivity {
     public static WindowConfig globalConfig = FileControl.getWindowConfig();
     public static Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     public static String base_version = "v1.1.2";
-    public static String product_version = "v1.2.5-poem-suggestion-tjyz";
+    public static String product_version = "v1.2.6-poem-suggestion-tjyz";
     public static PoemScreen poemScreen = new PoemScreen(new Point(1,1));
     public static MainWindow window;
     public static WelcomeScreen welcomeScreen;
