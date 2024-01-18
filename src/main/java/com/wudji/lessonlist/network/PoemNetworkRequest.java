@@ -59,11 +59,11 @@ public class PoemNetworkRequest {
                 in.close();
             } else {
                 response.append("GET request failed. Response Code: ").append(responseCode);
-                ExceptionManager.showErrorDialog(new Throwable(response.toString()));
+                ExceptionManager.showErrorDialog(new Exception(response.toString()));
             }
         } catch (Exception e) {
             response.append("An error occurred: ").append(e.getMessage());
-            ExceptionManager.showErrorDialog(new Throwable(response.toString()));
+            // ExceptionManager.showErrorDialog(new Exception(response.toString()));
         }
 
         return response.toString();

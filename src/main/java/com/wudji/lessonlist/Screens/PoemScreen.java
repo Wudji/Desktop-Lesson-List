@@ -77,14 +77,19 @@ public class PoemScreen extends JDialog {
         }
 
         // 标签行解析
-        JSONArray suggestReasonArray = JSONObject.parseObject(poemDataString).getJSONObject("data").getJSONArray("matchTags");
-        StringBuilder suggestReasonBuilder = new StringBuilder();
-        for (Object suggestObj : suggestReasonArray) {
-            suggestReasonBuilder.append(suggestObj.toString()).append(" | ");
+        try{
+            JSONArray suggestReasonArray = JSONObject.parseObject(poemDataString).getJSONObject("data").getJSONArray("matchTags");
+            StringBuilder suggestReasonBuilder = new StringBuilder();
+            for (Object suggestObj : suggestReasonArray) {
+                suggestReasonBuilder.append(suggestObj.toString()).append(" | ");
+            }
+            JLabel reasonLabel = new JLabel("诗词标签: " + suggestReasonBuilder.toString());
+            reasonLabel.setFont(FileControl.getFont(Font.PLAIN,(int)(MainActivity.globalConfig.getNoticeFontSize() * 0.6)));
+            panel.add(reasonLabel);
         }
-        JLabel reasonLabel = new JLabel("诗词标签: " + suggestReasonBuilder.toString());
-        reasonLabel.setFont(FileControl.getFont(Font.PLAIN,(int)(MainActivity.globalConfig.getNoticeFontSize() * 0.6)));
-        panel.add(reasonLabel);
+        catch (Exception ignored){
+
+        }
 
         // 添加信息按钮
         JButton refreshButton = new JButton("🔎 诗词信息");
@@ -111,21 +116,29 @@ public class PoemScreen extends JDialog {
 
     private NoticeLine[] resultResolve(){
         NoticeLine[] poemInfo = new NoticeLine[2];
-        // 诗歌句子解析
-        JSONObject fullData = JSONObject.parseObject(poemDataString);
-        // System.out.println(fullData.getString("status"));
-        if(Objects.equals(fullData.getString("status"), "success")){
-            JSONObject poemData = fullData.getJSONObject("data");
-            JSONObject originData = poemData.getJSONObject("origin");
+        try{
 
-            poemInfo[0] = new NoticeLine(poemData.getString("content"),"bold",0,0,0,0);
-            poemInfo[1] = new NoticeLine("——" + originData.getString("author") + "《"+ originData.getString("title") +"》","italic",0,0,0,0);
+            // 诗歌句子解析
+            JSONObject fullData = JSONObject.parseObject(poemDataString);
+            // System.out.println(fullData.getString("status"));
+            if(Objects.equals(fullData.getString("status"), "success")){
+                JSONObject poemData = fullData.getJSONObject("data");
+                JSONObject originData = poemData.getJSONObject("origin");
 
-        }else if(Objects.equals(fullData.getString("status"), "error")){
-            poemInfo[0] = new NoticeLine("诗词获取失败，何故?","bold",0,0,0,0);
-            poemInfo[1] = new NoticeLine("——错误代码：" + fullData.getInteger("errCode").toString() + "；错误信息"+ fullData.getString("errMessage") +"。","italic",0,0,0,0);
+                poemInfo[0] = new NoticeLine(poemData.getString("content"),"bold",0,0,0,0);
+                poemInfo[1] = new NoticeLine("——" + originData.getString("author") + "《"+ originData.getString("title") +"》","italic",0,0,0,0);
+
+            }else if(Objects.equals(fullData.getString("status"), "error")){
+                poemInfo[0] = new NoticeLine("诗词获取失败，何故?","bold",0,0,0,0);
+                poemInfo[1] = new NoticeLine("——错误代码：" + fullData.getInteger("errCode").toString() + "；错误信息"+ fullData.getString("errMessage") +"。","italic",0,0,0,0);
+            }
+            return poemInfo;
         }
-        return poemInfo;
+        catch (Exception ignored){
+            poemInfo[0] = new NoticeLine("本次诗词获取失败","bold",0,0,0,0);
+            poemInfo[1] = new NoticeLine("请检查你的网络连接，或禁用每日诗词功能","italic",0,0,0,0);
+            return poemInfo;
+        }
 
     }
 }

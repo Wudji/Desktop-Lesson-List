@@ -9,8 +9,7 @@ import com.wudji.lessonlist.screens.WelcomeScreen;
 import com.wudji.lessonlist.utils.ExceptionManager;
 import com.wudji.lessonlist.utils.FileControl;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -20,8 +19,8 @@ public class MainActivity {
     public static WindowConfig globalConfig = FileControl.getWindowConfig();
     public static Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     public static String base_version = "v1.1.2";
-    public static String product_version = "v1.2.4-poem-suggestion-tjyz";
-    public static PoemScreen poemScreen;
+    public static String product_version = "v1.2.5-poem-suggestion-tjyz";
+    public static PoemScreen poemScreen = new PoemScreen(new Point(1,1));
     public static MainWindow window;
     public static WelcomeScreen welcomeScreen;
     public static NoticeScreen noticeScreen;
@@ -42,25 +41,8 @@ public class MainActivity {
         Timer timer = new Timer();
 
         if (globalConfig.isEnablePoemSuggestion()){
-            Thread thread = new Thread(() -> {
-                Thread.setDefaultUncaughtExceptionHandler(new CustomExceptionHandler());
-
-                poemScreen = new PoemScreen(window.getLocation());
-                noticeScreen.updatePosition(poemScreen.getHeight());
-
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        refreshPoemInfo(poemScreen);
-                    }
-
-                    private void refreshPoemInfo(PoemScreen poemScreen){
-
-                        poemScreen.updatePoemInfo();
-                    }
-                }, 3600000,3600000);
-            });
-            thread.start();
+            poemScreen = new PoemScreen(window.getLocation());
+            noticeScreen.updatePosition(poemScreen.getHeight());
         }
 
         // 欢迎界面
@@ -95,6 +77,22 @@ public class MainActivity {
                 window.update();
             }
         },1,1000);
+
+        Thread thread = new Thread(() -> {
+            Thread.setDefaultUncaughtExceptionHandler(new CustomExceptionHandler());
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    refreshPoemInfo(poemScreen);
+                }
+
+                private void refreshPoemInfo(PoemScreen poemScreen){
+
+                    poemScreen.updatePoemInfo();
+                }
+            }, 3600000,3600000);
+        });
+        thread.start();
     }
 }
 class CustomExceptionHandler implements Thread.UncaughtExceptionHandler{
